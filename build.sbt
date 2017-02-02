@@ -15,7 +15,8 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % "2.3.8",
-  "com.codacy" %% "codacy-engine-scala-seed" % "2.7.1"
+  "com.codacy" %% "codacy-engine-scala-seed" % "2.7.1",
+  "com.fasterxml.jackson.core" % "jackson-core" % "2.8.6"
 )
 
 enablePlugins(JavaAppPackaging)
