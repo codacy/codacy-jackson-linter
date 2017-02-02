@@ -1,5 +1,5 @@
 {
-  "name": "JsonLinter???",
+  "name": "jackson-linter",
   "patterns": [
     {
       "patternId": "parse-error",

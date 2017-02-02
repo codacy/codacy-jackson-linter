@@ -1,6 +1,6 @@
-# Codacy JSONLint
+# Codacy Jackson Linter (JSON)
 
-This is the docker engine we use at Codacy to have [JSONLint](http://jsonlint.com/) support.
+This is the docker engine we use at Codacy to have a JSON linter using [Jackson](https://github.com/FasterXML/jackson-core).
 You can also create a docker to integrate the tool and language of your choice!
 Check the **Docs** section for more information.
 

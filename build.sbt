@@ -1,6 +1,6 @@
 import com.typesafe.sbt.packager.docker.{Cmd, ExecCmd}
 
-name := """codacy-engine-jsonlint"""
+name := """codacy-engine-jackson-linter"""
 
 version := "1.0-SNAPSHOT"
 
