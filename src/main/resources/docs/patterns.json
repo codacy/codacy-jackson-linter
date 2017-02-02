@@ -4,15 +4,11 @@
     {
       "patternId": "parse-error",
       "category": "ErrorProne",
-      "title": "Prohibit invalid JSON files",
-      "description": "Prohibits unparsable or invalid JSON files",
       "level": "Error"
     },
     {
       "patternId": "duplicate-keys",
       "category": "ErrorProne",
-      "title": "Prohibit overlapping keys",
-      "description": "Prohibits definition of overlapping key definitions in JSON files where the last definition would override the previous one",
       "level": "Warning"
     }
   ]

@@ -1,0 +1,14 @@
+[
+  {
+    "patternId": "parse-error",
+    "title": "Prohibit invalid JSON files",
+    "description": "Prohibits unparsable or invalid JSON files",
+    "timeToFix": 5
+  },
+  {
+    "patternId": "duplicate-keys",
+    "title": "Prohibit overlapping keys",
+    "description": "Prohibits definition of overlapping key definitions in JSON files where the last definition would override the previous one",
+    "timeToFix": 5
+  }
+]
