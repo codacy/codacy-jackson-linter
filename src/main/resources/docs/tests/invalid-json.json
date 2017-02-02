@@ -1,0 +1,7 @@
+//#Patterns: parse-error
+{
+  //#Err: parse-error
+  "foo": "xpto,
+  "foo2": 42
+}
+

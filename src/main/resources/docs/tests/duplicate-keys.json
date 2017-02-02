@@ -1,0 +1,7 @@
+//#Patterns: duplicate-keys
+{
+  "foo": "xpto",
+  //#Warning: duplicate-keys
+  "foo": 42
+}
+
