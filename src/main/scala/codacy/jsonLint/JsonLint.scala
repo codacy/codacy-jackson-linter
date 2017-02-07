@@ -62,24 +62,22 @@ object JsonLint extends Tool {
   }
 
   private def parseException(exp: JsonParseException, file: File, configuration: Option[List[Definition]]): Option[Result] = {
-    val duplicate = """(Duplicate field .*)[\s\S]*""".r
-    // Do not show 'Feature' related message
-    val other =
-      """(.*): [\s\S]*""".r
-
-    val patternMessageOpt = exp.getMessage match {
-      case duplicate(msg) => Option(JsonPattern.duplicateField, msg)
-      case other(msg) => Option(JsonPattern.invalidJson, msg)
-      case _ => None
-    }
-
-    patternMessageOpt.fold[Option[Result]](
-      Option(Result.FileError(Source.File(file.path.toString), Option(ErrorMessage(exp.getMessage))))
-    ) { case (pattern, message) =>
+    def createIssue(pattern: JsonPattern.Value, message: String) = {
       filterResult(Result.Issue(Source.File(file.path.toString),
         Result.Message(message),
         Pattern.Id(pattern.toString),
         Source.Line(exp.getLocation.getLineNr)), configuration)
+    }
+
+    val duplicate = """^(Duplicate field .*)""".r
+    val msgLine = exp.getMessage.split(System.lineSeparator).head
+
+    msgLine match {
+      case duplicate(msg) =>
+        createIssue(JsonPattern.duplicateField, msg)
+      case msg =>
+        val message = msg.replaceFirst("\\(not recognized as one since Feature 'ALLOW_COMMENTS' not enabled for parser\\)", "").trim
+        createIssue(JsonPattern.invalidJson, message)
     }
   }
 
