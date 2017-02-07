@@ -27,11 +27,7 @@ version in Docker := "1.0"
 
 val installAll =
   s"""apk update &&
-     |apk add --no-cache bash curl ruby ruby-bundler ruby-dev make g++ ca-certificates &&
-     |echo 'gem: --no-document' > /etc/gemrc &&
-     |gem install jsonlint &&
-     |gem cleanup &&
-     |apk del make g++ ruby-dev &&
+     |apk add --no-cache bash curl &&
      |rm -rf /var/cache/apk/*""".stripMargin.replaceAll(System.lineSeparator(), " ")
 
 mappings in Universal <++= (resourceDirectory in Compile) map { (resourceDir: File) =>

@@ -1,0 +1,6 @@
+//#Patterns: parse-error
+{
+  //#Err: parse-error
+  "adf : 2
+}
+
