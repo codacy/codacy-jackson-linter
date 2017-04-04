@@ -47,7 +47,7 @@ object JsonLint extends Tool {
 
     val issuesList = filesList.collect { case file =>
       Try {
-        parser.readTree(file.contentAsString)
+        parser.readTree(file.toJava)
       } match {
         case Failure(exp: JsonParseException) =>
           parseException(exp, file, configuration)
