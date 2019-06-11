@@ -4,7 +4,7 @@ name := """codacy-engine-jackson-linter"""
 
 version := "1.0-SNAPSHOT"
 
-val languageVersion = "2.11.8"
+val languageVersion = "2.12.7"
 
 scalaVersion := languageVersion
 
@@ -14,8 +14,8 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-json" % "2.3.8",
-  "com.codacy" %% "codacy-engine-scala-seed" % "2.7.1",
+  "com.typesafe.play" %% "play-json" % "2.7.3",
+  "com.codacy" %% "codacy-engine-scala-seed" % "3.0.9",
   "com.fasterxml.jackson.core" % "jackson-core" % "2.8.6"
 )
 

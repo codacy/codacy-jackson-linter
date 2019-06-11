@@ -1,11 +1,10 @@
 package codacy.jsonLint
 
 import better.files.File
-import codacy.docker.api.Pattern.Definition
-import codacy.docker.api.Result.Issue
-import codacy.docker.api.Source.Directory
-import codacy.docker.api.Tool.Specification
-import codacy.docker.api._
+import com.codacy.plugins.api.{ErrorMessage, Options, Source}
+import com.codacy.plugins.api.results.{Pattern, Result, Tool}
+import com.codacy.plugins.api.results.Pattern.Definition
+import com.codacy.plugins.api.results.Result.Issue
 import com.fasterxml.jackson.core.{JsonParseException, JsonParser}
 import com.fasterxml.jackson.databind.ObjectMapper
 
@@ -40,8 +39,10 @@ object JsonLint extends Tool {
     objectMapper
   }
 
-  override def apply(source: Directory, configuration: Option[List[Definition]], files: Option[Set[Source.File]])
-                    (implicit specification: Specification): Try[List[Result]] = {
+  def apply(source: Source.Directory,
+            configuration: Option[List[Pattern.Definition]],
+            files: Option[Set[Source.File]],
+            options: Map[Options.Key, Options.Value])(implicit specification: Tool.Specification): Try[List[Result]] = {
 
     val filesList = files.map(_.map(file => File(file.path))).getOrElse(File(source.path).listRecursively.toSet)
 
