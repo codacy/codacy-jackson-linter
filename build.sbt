@@ -30,15 +30,18 @@ val installAll =
      |apk add --no-cache bash curl &&
      |rm -rf /var/cache/apk/*""".stripMargin.replaceAll(System.lineSeparator(), " ")
 
-mappings in Universal <++= (resourceDirectory in Compile) map { (resourceDir: File) =>
-  val src = resourceDir / "docs"
-  val dest = "/docs"
+mappings.in(Universal) ++= resourceDirectory
+  .in(Compile)
+  .map { resourceDir: File =>
+    val src = resourceDir / "docs"
+    val dest = "/docs"
 
-  for {
-    path <- (src ***).get
-    if !path.isDirectory
-  } yield path -> path.toString.replaceFirst(src.toString, dest)
-}
+    (for {
+      path <- better.files.File(src.toPath).listRecursively()
+      if !path.isDirectory
+    } yield path.toJava -> path.toString.replaceFirst(src.toString, dest)).toSeq
+  }
+  .value
 
 val dockerUser = "docker"
 val dockerGroup = "docker"
@@ -50,12 +53,11 @@ daemonGroup in Docker := dockerGroup
 dockerBaseImage := "develar/java"
 
 dockerCommands := dockerCommands.value.flatMap {
-  case cmd@Cmd("WORKDIR", _) => List(cmd,
-    Cmd("RUN", installAll)
-  )
-  case cmd@(Cmd("ADD", "opt /opt")) => List(cmd,
+  case cmd@(Cmd("ADD", _)) => List(
+    Cmd("RUN", s"adduser -u 2004 -D $dockerUser"),
+    cmd,
+    Cmd("RUN", installAll),
     Cmd("RUN", "mv /opt/docker/docs /docs"),
-    Cmd("RUN", "adduser -u 2004 -D docker"),
     ExecCmd("RUN", Seq("chown", "-R", s"$dockerUser:$dockerGroup", "/docs"): _*)
   )
   case other => List(other)
