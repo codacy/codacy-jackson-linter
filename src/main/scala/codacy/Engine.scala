@@ -1,6 +1,6 @@
 package codacy
 
-import codacy.dockerApi.DockerEngine
 import codacy.jsonLint.JsonLint
+import com.codacy.tools.scala.seed.DockerEngine
 
-object Engine extends DockerEngine(JsonLint)
+object Engine extends DockerEngine(JsonLint)()
