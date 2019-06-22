@@ -53,12 +53,13 @@ daemonGroup in Docker := dockerGroup
 dockerBaseImage := "develar/java"
 
 dockerCommands := dockerCommands.value.flatMap {
-  case cmd@(Cmd("ADD", _)) => List(
-    Cmd("RUN", s"adduser -u 2004 -D $dockerUser"),
-    cmd,
-    Cmd("RUN", installAll),
-    Cmd("RUN", "mv /opt/docker/docs /docs"),
-    ExecCmd("RUN", Seq("chown", "-R", s"$dockerUser:$dockerGroup", "/docs"): _*)
-  )
+  case cmd @ (Cmd("ADD", _)) =>
+    List(
+      Cmd("RUN", s"adduser -u 2004 -D $dockerUser"),
+      cmd,
+      Cmd("RUN", installAll),
+      Cmd("RUN", "mv /opt/docker/docs /docs"),
+      ExecCmd("RUN", Seq("chown", "-R", s"$dockerUser:$dockerGroup", "/docs"): _*)
+    )
   case other => List(other)
 }
