@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<checkstyle version="4.3">
+    <file name="parse-error.json">
+        <error source="parse-error" line="4" message="Unexpected character ('f' (code 102)): was expecting comma to separate Object entries" severity="error" />
+    </file>
+</checkstyle>
