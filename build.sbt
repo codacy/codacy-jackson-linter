@@ -1,13 +1,36 @@
 import com.typesafe.sbt.packager.docker.Cmd
+import sjsonnew._
+import sjsonnew.BasicJsonProtocol._
+import sjsonnew.support.scalajson.unsafe._
 
 name := "codacy-jackson-linter"
 
 scalaVersion := "2.13.1"
 
+name := "codacy-checkstyle"
+
+lazy val toolVersionKey = settingKey[String](
+  "The version of the underlying tool retrieved from patterns.json"
+)
+toolVersionKey := {
+  case class Patterns(name: String, version: String)
+  implicit val patternsIso: IsoLList[Patterns] =
+    LList.isoCurried(
+      (p: Patterns) => ("name", p.name) :*: ("version", p.version) :*: LNil
+    ) {
+      case (_, n) :*: (_, v) :*: LNil => Patterns(n, v)
+    }
+
+  val jsonFile = (resourceDirectory in Compile).value / "docs" / "patterns.json"
+  val json = Parser.parseFromFile(jsonFile)
+  val patterns = json.flatMap(Converter.fromJson[Patterns])
+  patterns.get.version
+}
+
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % "2.8.1",
   "com.codacy" %% "codacy-engine-scala-seed" % "3.1.0",
-  "com.fasterxml.jackson.core" % "jackson-core" % "2.10.2"
+  "com.fasterxml.jackson.core" % "jackson-core" % toolVersionKey.value
 )
 
 enablePlugins(JavaAppPackaging)

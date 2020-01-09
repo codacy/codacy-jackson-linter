@@ -1,5 +1,6 @@
 {
   "name": "jackson-linter",
+  "version": "2.10.2",
   "patterns": [
     {
       "patternId": "parse-error",
