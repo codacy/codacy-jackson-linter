@@ -18,10 +18,8 @@ private object JsonPattern extends Enumeration {
   val duplicateField = Value("duplicate-keys")
   val invalidJson = Value("parse-error")
 
-  def fromPatternId(Id: Pattern.Id): Option[JsonPattern.Value] =
-    Try {
-      this.withName(Id.value)
-    }.toOption
+  def fromPatternId(id: Pattern.Id): Option[JsonPattern.Value] =
+    this.values.find(_.toString == id.value)
 
   def toPatternId(pattern: JsonPattern.Value): Pattern.Id =
     Pattern.Id(pattern.toString)
