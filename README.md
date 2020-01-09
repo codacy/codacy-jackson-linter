@@ -8,15 +8,14 @@ Check the **Docs** section for more information.
 
 You can create the docker by doing:
 
-```
-sbt docker:publishLocal
-```
+    sbt docker:publishLocal
 
 The docker is ran with the following command:
 
-```
-docker run -it -v $srcDir:/src  <DOCKER_NAME>:<DOCKER_VERSION>
-```
+    docker run -it -v $srcDir:/src  <DOCKER_NAME>:<DOCKER_VERSION>
+
+To update the tool version you need to update `src/main/resources/docs/patterns.json` with
+the new version. Sbt will checkout the new version on startup.
 
 ## Docs
 
@@ -35,11 +34,11 @@ You can follow the instructions there to make sure your tool is working as expec
 
 ### Among Codacy’s features:
 
- - Identify new Static Analysis issues
- - Commit and Pull Request Analysis with GitHub, BitBucket/Stash, GitLab (and also direct git repositories)
- - Auto-comments on Commits and Pull Requests
- - Integrations with Slack, HipChat, Jira, YouTrack
- - Track issues in Code Style, Security, Error Proneness, Performance, Unused Code and other categories
+-   Identify new Static Analysis issues
+-   Commit and Pull Request Analysis with GitHub, BitBucket/Stash, GitLab (and also direct git repositories)
+-   Auto-comments on Commits and Pull Requests
+-   Integrations with Slack, HipChat, Jira, YouTrack
+-   Track issues in Code Style, Security, Error Proneness, Performance, Unused Code and other categories
 
 Codacy also helps keep track of Code Coverage, Code Duplication, and Code Complexity.
 
