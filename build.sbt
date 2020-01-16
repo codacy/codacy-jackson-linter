@@ -7,8 +7,6 @@ name := "codacy-jackson-linter"
 
 scalaVersion := "2.13.1"
 
-name := "codacy-checkstyle"
-
 lazy val toolVersionKey = settingKey[String](
   "The version of the underlying tool retrieved from patterns.json"
 )
