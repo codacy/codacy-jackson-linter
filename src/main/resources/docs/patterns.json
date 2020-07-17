@@ -1,5 +1,5 @@
 {
-  "name": "jackson-linter",
+  "name": "jacksonlinter",
   "version": "2.10.2",
   "patterns": [
     {
