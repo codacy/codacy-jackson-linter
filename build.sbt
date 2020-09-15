@@ -27,7 +27,7 @@ toolVersionKey := {
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % "2.8.1",
-  "com.codacy" %% "codacy-engine-scala-seed" % "4.0.2",
+  "com.codacy" %% "codacy-engine-scala-seed" % "5.0.0",
   "com.fasterxml.jackson.core" % "jackson-core" % toolVersionKey.value
 )
 

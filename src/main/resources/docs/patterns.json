@@ -5,12 +5,14 @@
     {
       "patternId": "parse-error",
       "category": "ErrorProne",
-      "level": "Error"
+      "level": "Error",
+      "enabled": true
     },
     {
       "patternId": "duplicate-keys",
       "category": "ErrorProne",
-      "level": "Warning"
+      "level": "Warning",
+      "enabled": true
     }
   ]
 }
