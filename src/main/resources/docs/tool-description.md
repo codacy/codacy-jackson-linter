@@ -1,1 +1,1 @@
-This is the docker engine we use at Codacy to have a JSON linter using [Jackson](https://github.com/FasterXML/jackson-core). You can also create a docker to integrate the tool and language of your choice! [Learn more](https://github.com/codacy/codacy-jackson-linter)
+Jackson Linter is a JSON linter based on the same core library used by the Jackson JSON parser for Java. [Learn more](https://github.com/FasterXML/jackson-core)
