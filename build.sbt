@@ -5,7 +5,7 @@ import sjsonnew.support.scalajson.unsafe._
 
 name := "codacy-jackson-linter"
 
-scalaVersion := "2.13.1"
+scalaVersion := "2.13.11"
 
 lazy val toolVersionKey = settingKey[String](
   "The version of the underlying tool retrieved from patterns.json"
@@ -26,8 +26,8 @@ toolVersionKey := {
 }
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-json" % "2.8.1",
-  "com.codacy" %% "codacy-engine-scala-seed" % "5.0.1",
+  "com.typesafe.play" %% "play-json" % "2.9.4",
+  "com.codacy" %% "codacy-engine-scala-seed" % "5.0.2",
   "com.fasterxml.jackson.core" % "jackson-core" % toolVersionKey.value
 )
 
@@ -59,7 +59,7 @@ daemonUser in Docker := dockerUser
 
 daemonGroup in Docker := dockerGroup
 
-dockerBaseImage := "amazoncorretto:8-alpine3.17-jre"
+dockerBaseImage := "amazoncorretto:8-alpine3.18-jre"
 
 dockerCommands := dockerCommands.value.flatMap {
   case cmd @ (Cmd("ADD", _)) =>
