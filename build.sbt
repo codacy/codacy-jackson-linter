@@ -28,7 +28,8 @@ toolVersionKey := {
 libraryDependencies ++= Seq(
   "org.playframework" %% "play-json" % "3.0.5",
   "com.codacy" %% "codacy-engine-scala-seed" % "6.1.5",
-  "com.fasterxml.jackson.core" % "jackson-core" % toolVersionKey.value
+  "com.fasterxml.jackson.core" % "jackson-core" % toolVersionKey.value,
+  "com.github.pathikrit" %% "better-files" % "3.9.2"
 )
 
 enablePlugins(JavaAppPackaging)
