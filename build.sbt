@@ -60,7 +60,7 @@ daemonUser in Docker := dockerUser
 
 daemonGroup in Docker := dockerGroup
 
-dockerBaseImage := "amazoncorretto:11-alpine3.22-jre"
+dockerBaseImage := "amazoncorretto:11-alpine3.22-full"
 
 dockerCommands := dockerCommands.value.flatMap {
   case cmd @ (Cmd("ADD", _)) =>
