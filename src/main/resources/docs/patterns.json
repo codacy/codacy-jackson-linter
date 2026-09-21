@@ -1,6 +1,6 @@
 {
   "name": "jacksonlinter",
-  "version": "2.22.1",
+  "version": "2.22.2",
   "patterns": [
     {
       "patternId": "parse-error",
